@@ -1,0 +1,15 @@
+{
+  "name": "fwd-back",
+  "main": "./lib/fwd-back",
+  "version": "0.0.0",
+  "description": "Move your cursor the next/previous position.",
+  "keywords": [
+  ],
+  "repository": "https://github.com/atom/fwd-back",
+  "license": "MIT",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  },
+  "dependencies": {
+  }
+}
