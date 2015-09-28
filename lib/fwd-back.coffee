@@ -27,7 +27,6 @@ module.exports = FwdBack =
     @subscriptions.dispose()
 
   fwd: ->
-    console.log('fwd')
     if editor = atom.workspace.getActiveTextEditor()
       fb = editor.fwdback
       if fb.fwd.length
@@ -36,7 +35,6 @@ module.exports = FwdBack =
         editor.setCursorBufferPosition fb.current
 
   back: ->
-    console.log('back')
     if editor = atom.workspace.getActiveTextEditor()
       fb = editor.fwdback
       if fb.back.length
