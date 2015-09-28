@@ -18,10 +18,14 @@ module.exports = FwdBack =
         fwd: []
       editor.onDidChangeCursorPosition (event) ->
         fb = editor.fwdback
-        if event.newBufferPosition isnt fb.current # ignore events triggered by
-                                                   # the fwd or back commands
+        # ignore events triggered by the fwd or back commands
+        if event.newBufferPosition isnt fb.current
           fb.back.push fb.current
           fb.current = event.newBufferPosition
+          # we are adding a new point and not moving either forward or back
+          # within the current history, so fwd should be "overwritten" to
+          # preserve the new history state
+          fb.fwd = [] if fb.fwd.length
 
   deactivate: ->
     @subscriptions.dispose()
