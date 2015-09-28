@@ -12,21 +12,34 @@ module.exports = FwdBack =
     @subscriptions.add atom.commands.add 'atom-workspace', 'fwd-back:back': => @back()
 
     atom.workspace.observeTextEditors (editor) ->
-      # Initialize the cursor position 'history' for our package
-      editor.fwdBackHistory =
-        cursorPositions: [editor.getCursorBufferPosition()],
-        current: 0
-      # Listen for cursor position change
+      editor.fwdback =
+        back: [],
+        current: editor.getCursorBufferPosition(),
+        fwd: []
       editor.onDidChangeCursorPosition (event) ->
-        console.log(event)
+        fb = editor.fwdback
+        if event.newBufferPosition isnt fb.current # ignore events triggered by
+                                                   # the fwd or back commands
+          fb.back.push fb.current
+          fb.current = event.newBufferPosition
 
   deactivate: ->
     @subscriptions.dispose()
 
   fwd: ->
+    console.log('fwd')
     if editor = atom.workspace.getActiveTextEditor()
-      editor.insertText('You pressed the fwd button.')
+      fb = editor.fwdback
+      if fb.fwd.length
+        fb.back.push fb.current
+        fb.current = fb.fwd.pop()
+        editor.setCursorBufferPosition fb.current
 
   back: ->
+    console.log('back')
     if editor = atom.workspace.getActiveTextEditor()
-      editor.insertText('You pressed the back button.')
+      fb = editor.fwdback
+      if fb.back.length
+        fb.fwd.push fb.current
+        fb.current = fb.back.pop()
+        editor.setCursorBufferPosition fb.current
