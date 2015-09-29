@@ -2,8 +2,12 @@
 'context-menu':
   'atom-text-editor': [
     {
-      'label': 'Toggle fwd-back'
-      'command': 'fwd-back:toggle'
+      'label': 'Back'
+      'command': 'fwd-back:back'
+    }
+    {
+      'label': 'Forward'
+      'command': 'fwd-back:fwd'
     }
   ]
 'menu': [
@@ -13,8 +17,12 @@
       'label': 'fwd-back'
       'submenu': [
         {
-          'label': 'Toggle'
-          'command': 'fwd-back:toggle'
+          'label': 'Back'
+          'command': 'fwd-back:back'
+        }
+        {
+          'label': 'Forward'
+          'command': 'fwd-back:fwd'
         }
       ]
     ]
