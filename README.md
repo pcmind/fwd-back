@@ -1,5 +1,8 @@
 # fwd-back package
 
-A short description of your package.
+Keep track of where your cursor has been in the buffer, and move back and forth between them!
 
-![A screenshot of your package](https://f.cloud.github.com/assets/69169/2290250/c35d867a-a017-11e3-86be-cd7c5bf3ff9b.gif)
+Useful for when you jump to a symbol and want to quickly get back to where you were, or any other situation where you're jumping back and forth between different parts of a file.
+
+- cmd-ctrl-left -> back
+- cmd-ctrl-right -> fwd
